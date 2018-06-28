@@ -4,12 +4,20 @@
   "main": "index.js",
   "author": "Carson Howard <cjhoward92@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "compile": "tsc",
+    "start": "node dist/Server.js"
+  },
   "devDependencies": {
+    "@types/body-parser": "^1.17.0",
     "@types/express": "^4.16.0",
+    "@types/mongoose": "^5.0.18",
     "@types/node": "^10.5.0",
     "typescript": "^2.9.2"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.7"
   }
 }
