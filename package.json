@@ -1,0 +1,15 @@
+{
+  "name": "typescript-express-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Carson Howard <cjhoward92@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/node": "^10.5.0",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
