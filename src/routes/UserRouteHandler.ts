@@ -21,7 +21,7 @@ export class UserRouteHandler {
 
   // @handleRouteError
   get(req: express.Request, res: express.Response) {
-    throw new Error('This will explode, and the decorator will catch it!');
+    throw new NotFound('This will explode, and the decorator will catch it!');
   }
 
   async post(req: express.Request, res: express.Response) {
