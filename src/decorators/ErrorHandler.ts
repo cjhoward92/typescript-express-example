@@ -22,6 +22,10 @@ const errorHandlerWrapper = (originalFunction: Function) =>
 
 const isAsync = (func: Function): boolean => func.constructor.name === 'AsyncFunction';
 
+// This is our method decorator. It takes an object prototype and mutates it by wrapping the function
+// in an error handler. This is so we can easily wrap express router functions in error handler logic
+// without having to partially apply a function or simply wrap a function ourselves. It removes a ton
+// of work.
 export const handleRouteError = (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
   const originalFunction = target[propertyKey];
 
@@ -34,6 +38,9 @@ export const handleRouteError = (target: any, propertyKey: string, descriptor: P
     : errorHandlerWrapper(originalFunction);
 };
 
+// This is a class function that assumes all methods other than the constructor are to be wrapped
+// in an error handler for the router. You can imagine how much work this can take from the user.
+// Not a perfect pattern, but I think it may be the best we have in TypeScript or JavaScript.
 export const handleAllRouteErrors = (constructor: Function) => {
   Object.getOwnPropertyNames(constructor.prototype).forEach((propertyKey: string) => {
     if (propertyKey === 'constructor')

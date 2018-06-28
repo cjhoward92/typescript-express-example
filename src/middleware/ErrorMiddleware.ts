@@ -6,6 +6,7 @@ import { Unauthorized,  } from '../error/Unauthorized';
 import { Forbidden } from '../error/Forbidden';
 import { InvalidArgument } from '../error/InvalidArgument';
 
+// I wish we had pattern matching and real Algebraic Data Types :(
 const convertErrorToStatusCode = (error: Error): number => {
   if (error instanceof YouNeedToStop)
     return 429;
@@ -21,6 +22,7 @@ const convertErrorToStatusCode = (error: Error): number => {
     return 500;
 };
 
+// Out error middleware for express
 export default (error: Error, req: express.Request, res: express.Response, next: express.NextFunction): void => {
   const statusCode = convertErrorToStatusCode(error);
 

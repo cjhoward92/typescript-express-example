@@ -4,7 +4,7 @@ import { createUser } from './../../../src/domain/user/CreateUser';
 import { IUser, UserStatus } from '../../../src/domain/user/User';
 import { InvalidArgument } from '../../../src/error/InvalidArgument';
 
-const failCreateUserBadEmail = (emails: string[]) => {
+const testCreateUserWithManyBadEmails = (emails: string[]) => {
   emails.forEach((email: string) => {
     it(`throws when email is ${email || 'empty'}`, function() {
       let err: Error | null = null;
@@ -26,7 +26,7 @@ const failCreateUserBadEmail = (emails: string[]) => {
   });
 }
 
-const failCreateUserBadUsername = (usernames: string[]) => {
+const testCreateUserWithManyBadUsernames = (usernames: string[]) => {
   usernames.forEach((username: string) => {
     it(`throws when username is ${username || 'empty'}`, function() {
       let err: Error | null = null;
@@ -48,6 +48,7 @@ const failCreateUserBadUsername = (usernames: string[]) => {
   });
 }
 
+// Some tests written in TypeScript
 describe('CreateUser', function() {
   describe('#createUser', function() {
     it('creates a user', function() {
@@ -61,7 +62,7 @@ describe('CreateUser', function() {
       expect(user.status).to.eq(UserStatus.ACTIVE);
     });
 
-    failCreateUserBadEmail([
+    testCreateUserWithManyBadEmails([
       '',
       '4',
       '5d',
@@ -71,7 +72,7 @@ describe('CreateUser', function() {
       'a.com'
     ]);
 
-    failCreateUserBadUsername([
+    testCreateUserWithManyBadUsernames([
       '',
       'a',
       'aa'
